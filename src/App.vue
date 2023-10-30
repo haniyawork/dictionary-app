@@ -84,7 +84,9 @@
             this.audiosrc1 = response["data"][0]["phonetics"][1] ? response["data"][0]["phonetics"][1].audio : '',
             this.meanings = response["data"][0]["meanings"][0].definitions,
             this.synonyms = response["data"][0]["meanings"][0].synonyms[0],
-            this.examples = response["data"][0]["meanings"][0].definitions
+            this.examples = this.meanings.filter((example) => {
+              return example.example != undefined
+            })
           ))
       },
     }
@@ -168,5 +170,12 @@
     border-radius: 10px;
     background-color: #e1bebead;
     box-shadow: rgba(50, 50, 93, 0.2) 0px 50px 100px -20px, rgba(0, 0, 0, 0.2) 0px 30px 60px -30px;
+  }
+  .list-group li{
+    position: relative;
+    display: block;
+    padding: .75rem 1.25rem;
+    margin-bottom: -1px;
+    border: 1px solid rgba(0,0,0,.125);
   }
 </style>
